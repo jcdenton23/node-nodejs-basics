@@ -2,8 +2,8 @@ import path from 'path';
 import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
 import './files/c.js';
-import a from './files/a.json' assert { type: 'json' };
-import b from './files/b.json' assert { type: 'json' };
+import a from './files/a.json' with { type: 'json' };
+import b from './files/b.json' with { type: 'json' };
 import { fileURLToPath } from 'url';
 
 const random = Math.random();
