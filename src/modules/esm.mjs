@@ -2,8 +2,6 @@ import path from 'path';
 import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
 import './files/c.js';
-import a from './files/a.json' with { type: 'json' };
-import b from './files/b.json' with { type: 'json' };
 import { fileURLToPath } from 'url';
 
 const random = Math.random();
@@ -11,9 +9,9 @@ const random = Math.random();
 let unknownObject;
 
 if (random > 0.5) {
-  unknownObject = a;
+  unknownObject = await import('./files/a.json', { with: { type: 'json' } });
 } else {
-  unknownObject = b;
+  unknownObject = await import('./files/b.json', { with: { type: 'json' } });
 }
 
 console.log(`Release ${release()}`);
@@ -29,7 +27,7 @@ const myServer = createServerHttp((_, res) => {
 
 const PORT = 3000;
 
-console.log(unknownObject);
+console.log(unknownObject.default);
 
 myServer.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
