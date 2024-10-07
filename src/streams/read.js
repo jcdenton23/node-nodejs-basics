@@ -9,6 +9,12 @@ const filePath = path.join(__dirname, 'files', 'fileToRead.txt');
 
 const read = async () => {
   const stream = fs.createReadStream(filePath);
+
+  stream.on('end', () => {
+    console.log('\nRead stream finished');
+    process.exit(0);
+  });
+
   stream.pipe(stdout);
 };
 
